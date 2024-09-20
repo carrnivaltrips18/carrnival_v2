@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\NotificationController;
+// use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,9 +36,11 @@ Route::group(['prefix' => 'admin'],function(){
     // authenticate middleware for admin
     Route::group(['middleware'=>'admin.auth'],function(){
         Route::get('logout',[LoginController::class,'logout'])->name('admin.logout');
+         // Profile edit routes
+        Route::get('profile_edit/{id}', [LoginController::class, 'edit'])->name('admin.profile_edit');
+        Route::post('update/{id}', [LoginController::class, 'update'])->name('admin.update');
         Route::get('dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
-        Route::get('notification',[DashboardController::class,'notification'])->name('notification');
-
+        Route::get('notification',[DashboardController::class,'notification'])->name('notifications.index');
     });
 
     });
