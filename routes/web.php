@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::group(['middleware'=>'admin.auth'],function(){
         Route::get('logout',[LoginController::class,'logout'])->name('admin.logout');
         Route::get('dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
+        Route::get('notification',[DashboardController::class,'notification'])->name('notification');
 
     });
 
