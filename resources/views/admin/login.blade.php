@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin | Log in</title>
-
+    @notifyCss
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -78,25 +78,6 @@
         </div>
       </form>
 
-      <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
-      </div>
-      <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        {{-- <a href="{{route('password.request')}}">I forgot my password</a> --}}
-        <a href="#">I forgot my password</a>
-
-      </p>
-       {{-- <p class="mb-0"> --}}
-        {{-- <a href="register.html" class="text-center">Register a new membership</a> --}}
-      {{-- </p> --}}
     </div>
     <!-- /.login-card-body -->
   </div>
@@ -109,5 +90,7 @@
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+<x-notify::notify />
+@notifyJs
 </body>
 </html>
