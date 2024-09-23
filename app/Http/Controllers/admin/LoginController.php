@@ -21,6 +21,8 @@ class LoginController extends Controller
     {
         return view('admin.login');
     }
+
+
     // Show edit form for admin profile
     public function edit($id)
     {
@@ -127,4 +129,12 @@ class LoginController extends Controller
         ]));
         return redirect()->route('admin.login');
     }
+    public function list(){
+        $notifications = Notification::all();
+        return view('admin.notification_list')->with('notifications', $notifications);
+
+    }
+
 }
+
+

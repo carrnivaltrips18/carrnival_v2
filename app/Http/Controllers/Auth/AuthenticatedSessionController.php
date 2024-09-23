@@ -8,35 +8,48 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
+    
     /**
      * Display the login view.
      */
     public function create(): View
     {
+       
         return view('auth.login');
     }
 
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+
+public function store(LoginRequest $request): RedirectResponse
 {
+    
+    $user = User::where('email', $request->email)->first();
+    if ($user && $user->status == 0) {
+        return back()->withErrors([
+            'email' => 'Your account is inactive. Please contact support.',
+        ])->withInput($request->only('email', 'remember'));
+    }
     // Attempt to authenticate the user
     if ($request->authenticate()) {
+       
         $request->session()->regenerate();
 
         // Redirect to the intended dashboard with a success message
         return redirect()->intended(route('dashboard', [], false));
     }
-
     // If authentication fails, redirect back with an error message
     return back()->withErrors([
         'email' => 'Either email or password is incorrect.',
     ])->withInput($request->only('email', 'remember'));
 }
+
+
 
 
     /**
