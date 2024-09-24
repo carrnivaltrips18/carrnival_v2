@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\UserloginController;
 use App\Http\Controllers\admin\NotificationController;
+use App\Http\Controllers\admin\MasterSettingController;
 // use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('notification', [DashboardController::class, 'notification'])->name('notifications.index');
         Route::get('users_list', [UserloginController::class, 'index'])->name('admin.users.list');
         Route::get('status_active_deactive/', [UserloginController::class, 'status_active_deactive'])->name('admin.status_active_deactive');
+        Route::get('master_setting',[MasterSettingController::class,'index'])->name('admin.master_setting');
+        Route::post('master_setting',[MasterSettingController::class,'store'])->name('admin.master_setting');
     });
 });
 

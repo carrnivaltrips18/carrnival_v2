@@ -59,8 +59,12 @@
                 @endforeach
             </tbody>
         </table>
+        
     </div>
-</div>
+      <!-- Pagination Links -->
+    {{ $users->links() }} <!-- Display pagination links -->
+  
+    </div>
 
    <script>
             function getData(id) {

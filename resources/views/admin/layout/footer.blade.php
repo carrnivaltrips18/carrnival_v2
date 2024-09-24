@@ -1,5 +1,11 @@
+@php
+$details = App\Models\MasterSetting::first(); // Make sure to use the correct namespace
+$compnay_link = $details->compnay_link;
+$company_title = $details->company_title;
+@endphp
 <footer class="main-footer">
-  <strong>Copyright &copy; 2014 <a href="https://carrnivaltrips.com/" target="_blank">Carrnivaltrips </a>.</strong>
+  <strong>Copyright &copy; 2012-2024 <a href="{{ $compnay_link }}"
+      target="_blank">{{ $company_title }}</a>.</strong>
   All rights reserved.
   <div class="float-right d-none d-sm-inline-block">
     <b>Version</b> 1.0.0

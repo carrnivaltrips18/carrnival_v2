@@ -67,13 +67,14 @@
                </a>
              </li>
 
-             {{--<li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
-            </ul>
+             <li class="nav-item">
+              <a href="{{ route('admin.master_setting') }}"
+                class="nav-link {{ Request::routeIs('admin.master_setting') ? 'active' : '' }}">
+                <i class="far fa-user nav-icon"></i>
+                <p>Master Setting</p>
+              </a>
+            </li>
+            {{--</ul>
           </li>
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">

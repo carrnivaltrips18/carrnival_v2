@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('content')
-    <div class="container bg-secondary p-4">
+    <div class="container  p-4">
         <a href="dashboard" class="bg-danger btn btn-sm m-1">Go To Dashboard</a>
         <div class="card text-dark">
             <div class="card-header bg-primary">
@@ -40,5 +40,6 @@
                 </tbody>
             </table>
         </div>
+        {{ $notifications->links() }}
     </div>
 @endsection

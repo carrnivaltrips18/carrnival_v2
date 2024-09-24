@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Models\User; // Make sure to import the User model
 class UserloginController extends Controller
 {
@@ -15,6 +16,7 @@ class UserloginController extends Controller
      public function index()
      {
          $users = User::all(); // Fetch all users from the database
+         $users = User::paginate(3); 
          return view('admin.users_list')->with('users', $users); // Pass users to the view
      }
 

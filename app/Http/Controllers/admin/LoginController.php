@@ -131,6 +131,7 @@ class LoginController extends Controller
     }
     public function list(){
         $notifications = Notification::all();
+        $notifications = Notification::paginate(10);
         return view('admin.notification_list')->with('notifications', $notifications);
 
     }
