@@ -44,6 +44,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('notification', [DashboardController::class, 'notification'])->name('notifications.index');
         Route::get('users_list', [UserloginController::class, 'index'])->name('admin.users.list');
+        Route::get('users_list', [UserloginController::class, 'index'])->name('admin.users.list');
+        Route::get('users_list', [UserloginController::class, 'index'])->name('admin.users.list');
+        Route::get('users/csv', [UserloginController::class, 'exportCsv'])->name('admin.users.csv');
+        Route::post('users/upload_csv', [UserloginController::class, 'uploadCsv'])->name('admin.users.upload_csv');
         Route::get('status_active_deactive/', [UserloginController::class, 'status_active_deactive'])->name('admin.status_active_deactive');
         Route::get('master_setting',[MasterSettingController::class,'index'])->name('admin.master_setting');
         Route::post('master_setting',[MasterSettingController::class,'store'])->name('admin.master_setting');
