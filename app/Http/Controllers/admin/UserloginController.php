@@ -63,6 +63,7 @@ class UserloginController extends Controller
             'Content-Disposition' => 'attachment;filename="' . $fileName . '"',
         ]);
     }
+  
 
 
     public function uploadCsv(Request $request)
@@ -81,17 +82,36 @@ class UserloginController extends Controller
             if ($key === 0) {
                 continue;
             }
+            
+             // Ensure the row has enough columns
+            if (count($row) < 7) { // Ensure you have enough columns for your data
+                continue; // Optionally log or handle this case
+            }
+
+
+            // Validate required fields
+            $email = $row[2] ?? null;
+            if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                continue; // Optionally log or handle this case
+            }
+
+            // Check for existing user
+            if (User::where('email', $email)->exists()) {
+                continue; // Optionally log or handle duplicate case
+            }
 
             $user = User::create([
-                'name' => $row[1],
-                'email' => $row[2],
-                'password' => Hash::make('password'), // Set a default password, you can customize it
-                'role' => $row[3],
-                'created_at' => $row[4],
-                'updated_at' => $row[5],
-                'status' => $row[6],
+               'name' => $row[1],
+                'email' => $email,
+                'password' => Hash::make($row[0]), // Hash the password from the CSV
+                'role' => $row[3] ?? 'user', // Default to 'user' if not provided
+                'status' => $row[4], // Ensure this value is valid
+                'created_at' => isset($row[5]) ? \Carbon\Carbon::parse($row[5]) : now(),
+                'updated_at' => isset($row[6]) ? \Carbon\Carbon::parse($row[6]) : now(),
+                
             ]);
         }
+          
 
         return redirect()->back()->with('success', 'CSV file imported successfully.');
     }
