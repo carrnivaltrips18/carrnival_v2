@@ -74,6 +74,20 @@
                 <p>Master Setting</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.header_content') }}"
+                class="nav-link {{ Request::routeIs('admin.header_content') ? 'active' : '' }}">
+                <i class="far fa-user nav-icon"></i>
+                <p>Header Content</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.header_content_list') }}"
+                class="nav-link {{ Request::routeIs('admin.header_content_list') ? 'active' : '' }}">
+                <i class="far fa-user nav-icon"></i>
+                <p>Header Content List</p>
+              </a>
+            </li>
             {{--</ul>
           </li>
           <li class="nav-item">

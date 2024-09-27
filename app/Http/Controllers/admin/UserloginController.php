@@ -156,6 +156,16 @@ class UserloginController extends Controller
             return true; // Indicate success
         }
     }
+    public function downloadSampleCsv()
+{
+    $filePath = public_path('csv/user_list_sempel.csv');
+
+    if (file_exists($filePath)) {
+        return response()->download($filePath, 'user_list_sempel.csv');
+    }
+
+    return redirect()->back()->with('error', 'user_list_sempel.csv');
+}
 
     public function create()
     {
@@ -199,3 +209,5 @@ class UserloginController extends Controller
         //
     }
 }
+
+

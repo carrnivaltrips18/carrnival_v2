@@ -6,7 +6,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\UserloginController;
 use App\Http\Controllers\admin\NotificationController;
 use App\Http\Controllers\admin\MasterSettingController;
-// use Illuminate\Support\Facades\Notification;
+use App\Http\Controllers\admin\HeaderContentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -51,6 +51,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('status_active_deactive/', [UserloginController::class, 'status_active_deactive'])->name('admin.status_active_deactive');
         Route::get('master_setting',[MasterSettingController::class,'index'])->name('admin.master_setting');
         Route::post('master_setting',[MasterSettingController::class,'store'])->name('admin.master_setting');
+        Route::get('header_content',[HeaderContentController::class,'index'])->name('admin.header_content');
+        Route::post('header_content',[HeaderContentController::class,'create'])->name('admin.header_content');
+        Route::get('header_content_list',[HeaderContentController::class,'list'])->name('admin.header_content_list');
+        Route::patch('/header_content_list/{id}/toggleStatus', [HeaderContentController::class, 'toggleStatus'])->name('admin.header_content_list.toggleStatus');
+        Route::get('header_content_edit/{id}',[HeaderContentController::class,'edit'])->name('admin.header_content_edit');
+        Route::put('header_content/update/{id}',[HeaderContentController::class,'update'])->name('admin.header_content_update');
+        Route::get('download',[UserloginController::class,'downloadSampleCsv'])->name('admin.downloadcsv');
+
     });
 });
 

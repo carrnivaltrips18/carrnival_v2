@@ -13,7 +13,7 @@
 <div class="row m-4">
     <div class="col-12">
         <div>
-            <h5 class="mt-4">Upload CSV</h5>
+            <h5 class="mt-4">Import CSV</h5>
             <form action="{{ route('admin.users.upload_csv') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
@@ -22,13 +22,14 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Upload</button>
+                <button type="submit" class="btn btn-primary">Import</button>
+                <a href="{{ route('admin.downloadcsv') }}" class="btn btn-info">Download Sample CSV</a>
             </form>
         </div>
         <div class="card">
             <div class="card-header">
                 {{-- <a href="{{ route('admin.users.csv') }}" class="bg-danger btn btn-sm m-1">Download</a> --}}
-                <a href="{{ route('admin.users.csv') }}" class="btn btn-success">Download CSV</a>
+                <a href="{{ route('admin.users.csv') }}" class="btn btn-success">Export CSV</a>
                 <div class="card-tools">
                     <form method="GET" action="{{ route('admin.users.list') }}">
                         <div class="input-group input-group-sm" style="width: 150px;">
