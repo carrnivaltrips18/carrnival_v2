@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\UserloginController;
 use App\Http\Controllers\admin\NotificationController;
 use App\Http\Controllers\admin\MasterSettingController;
 use App\Http\Controllers\admin\HeaderContentController;
+use App\Http\Controllers\admin\SocialMediaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -58,6 +59,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('header_content_edit/{id}',[HeaderContentController::class,'edit'])->name('admin.header_content_edit');
         Route::put('header_content/update/{id}',[HeaderContentController::class,'update'])->name('admin.header_content_update');
         Route::get('download',[UserloginController::class,'downloadSampleCsv'])->name('admin.downloadcsv');
+        Route::get('social_media',[SocialMediaController::class,'index'])->name('admin.socialmedia_form');
+        Route::post('social_media',[SocialMediaController::class,'create'])->name('admin.socialmedia');
+        Route::get('social_media_list',[SocialMediaController::class,'list'])->name('admin.socialmedia_list');
+        Route::patch('/social_media_list/{id}/toggleStatus', [SocialMediaController::class, 'toggleStatus'])->name('admin.socialmedia_list.toggleStatus');
+        Route::delete('socialmedia_delete/{id}',[SocialMediaController::class,'delete'])->name('admin.socialmedia_delete');
+        Route::get('socialmedia_edit/{id}',[SocialMediaController::class,'edit'])->name('admin.socialmedia_edit');
+        Route::put('socialmedia_update/{id}', [SocialMediaController::class, 'update'])->name('admin.socialmedia_update');
+
 
     });
 });
